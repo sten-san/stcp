@@ -7,10 +7,12 @@
 #include <iterator>
 
 #include <optional>
+#include <tuple>
 
 #include <limits>
 #include <cstdint>
 #include <cstddef>
+#include <cassert>
 
 namespace stcp {
     using std::size_t;
@@ -24,9 +26,11 @@ namespace stcp {
     using std::uint64_t;
 
     using std::pair;
+    using std::tuple;
     using std::optional;
     using std::nullopt;
     using std::make_pair;
+    using std::make_tuple;
 
     template <typename T>
     const inline auto inf = std::numeric_limits<T>::max();
