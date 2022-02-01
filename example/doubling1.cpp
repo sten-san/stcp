@@ -29,7 +29,7 @@ int main() {
         return z;
     });
 
-    auto f = dub([](auto &g, auto &args) {
+    auto f = dub.connect([](auto &g, auto &args) {
         return make_tuple(g[get<0>(args)]);
     });
 

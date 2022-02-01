@@ -25,44 +25,53 @@ namespace stcp {
             }
         }
 
+        // 0 <= a1 < a2 < ... < ak <= log2
+        // 2^a1 + 2^a2 + ... + 2^ak = x
+        // f(x^(2^a1)), f(x^(2^a2)), ..., f(x^(2^ak))
+        template <typename F>
+        void parse(int_type x, F f) {
+            auto iter = std::cbegin(dub_);
+
+            while (0 < x) {
+                if (x & 1) {
+                    f(*iter);
+                }
+                ++iter; x >>= 1;
+            }
+        }
+
+        // x * x * ... * x
+        // |--- 0 < n ---|
+        auto repeat(int_type n) {
+            assert(0 < n);
+
+            auto acc = dub_[0];
+            parse(n - 1, [&](auto &f) {
+                acc = op_(acc, f);
+            });
+
+            return acc;
+        }
+
+        template <typename Apply>
+        auto connect(Apply &&apply) {
+            return [this, apply = std::forward<Apply>(apply)](int_type x, auto ...args) {
+                auto t = make_tuple(args...);
+
+                parse(x, [&](auto &f) {
+                    t = apply(f, t);
+                });
+
+                return t;
+            };
+        }
+
         size_t log2() const noexcept {
             return log2_;
         }
 
         const T &operator [](size_t i) {
             return dub_[i];
-        }
-
-        T operator ()(int_type d) {
-            auto acc = dub_[0];
-
-            auto iter = std::begin(dub_);
-            while (0 < d) {
-                if (d & 1) {
-                    acc = op_(acc, *iter);
-                }
-                ++iter; d >>= 1;
-            }
-
-            return acc;
-        }
-
-        template <typename Apply>
-        auto operator ()(Apply &&apply) {
-            return [this, apply = std::forward<Apply>(apply)](int_type d, auto ...args) {
-                auto t = make_tuple(args...);
-                auto r = d;
-
-                auto iter = std::begin(dub_);
-                while (0 < r) {
-                    if (r & 1) {
-                        t = apply(*iter, t);
-                    }
-                    ++iter; r >>= 1;
-                }
-
-                return t;
-            };
         }
 
     private:
