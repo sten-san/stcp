@@ -52,7 +52,7 @@ namespace stcp {
     using bint = boost::multiprecision::cpp_int;
 
     template <>
-    const inline auto inf<bint> = (bint(1) << 1023) - 1;
+    const inline bint inf<bint> = (bint(1) << 1023) - 1;
 }
 
 #endif // STCP_ENABLE_MULTIPRECISION
