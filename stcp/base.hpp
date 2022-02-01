@@ -2,10 +2,11 @@
 #define STCP_BASE_HPP
 
 #include <utility>
-
 #include <algorithm>
 #include <numeric>
 #include <iterator>
+
+#include <optional>
 
 #include <limits>
 #include <cstdint>
@@ -21,6 +22,11 @@ namespace stcp {
     using std::uint32_t;
     using std::int64_t;
     using std::uint64_t;
+
+    using std::pair;
+    using std::optional;
+    using std::nullopt;
+    using std::make_pair;
 
     template <typename T>
     const inline auto inf = std::numeric_limits<T>::max();
