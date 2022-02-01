@@ -53,7 +53,7 @@ namespace stcp {
                 std::advance(iter, -1);
             }
 
-            while (iter->first < r) {
+            while (iter != std::end(seg_) && iter->first < r) {
                 if (l < iter->second) {
                     iter = seg_.erase(iter);
                 }
@@ -85,6 +85,10 @@ namespace stcp {
         int_type covered_size(int_type x) const {
             auto [l, r] = covered(x);
             return r - l;
+        }
+
+        bool is_covered(int_type x) const {
+            return 0 < covered_size(x);
         }
 
         bool same(int_type x, int_type y) const {
