@@ -19,7 +19,7 @@ int main() {
 
     vector<array<int64_t, 2>> next(m);
     for (int64_t i = 0; i < m; ++i) {
-        next[i] = { (i * i) % m, (i * i) % m };
+        next[i] = { (i * i) % m, i };
     }
 
     auto dub = stcp::make_doubling<int64_t>(log2, next, [&](auto &x, auto &y) {
@@ -38,7 +38,7 @@ int main() {
         return make_tuple(t, p + q);
     });
 
-    auto [_, ans] = f(n - 1, x, int64_t(x));
+    auto [_, ans] = f(n, x, int64_t(0));
 
     cout << ans << endl;
 }
