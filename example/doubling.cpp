@@ -1,6 +1,7 @@
 // https://atcoder.jp/contests/abc167/tasks/abc167_d
 
 #include <iostream>
+#include <vector>
 #include <tuple>
 #include <cstdint>
 #include <stcp/doubling.hpp>

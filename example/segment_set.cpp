@@ -1,6 +1,7 @@
 // https://yukicoder.me/problems/no/674
 
 #include <iostream>
+#include <algorithm>
 #include <cstdint>
 #include <stcp/segment_set.hpp>
 using namespace std;
