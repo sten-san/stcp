@@ -70,7 +70,7 @@ namespace stcp {
             return log2_;
         }
 
-        const T &operator [](size_t i) {
+        const T &operator [](size_t i) const {
             return dub_[i];
         }
 
