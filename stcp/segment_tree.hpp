@@ -49,7 +49,7 @@ namespace stcp {
         }
 
     public:
-        // O(size(segment_tree))
+        // O(log size(segment_tree))
         // 0 <= i < size(segment_tree)
         void set(std::size_t i, S x) {
             assert(0 <= i && i < n_);
