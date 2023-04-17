@@ -64,7 +64,7 @@ namespace stcp {
         }
         // O(1)
         // 0 <= i < size(segment_tree)
-        S get(std::size_t i) const {
+        const S &get(std::size_t i) const {
             assert(0 <= i && i < n_);
 
             return data_[i + size_];
@@ -92,7 +92,7 @@ namespace stcp {
         }
 
         // O(1)
-        S all_prod() const {
+        const S &all_prod() const {
             return data_[1];
         }
 

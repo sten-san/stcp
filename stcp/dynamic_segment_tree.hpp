@@ -36,7 +36,7 @@ namespace stcp {
 
         // O(log size(dynamic_segment_tree))
         // 0 <= i < size(dynamic_segment_tree)
-        S get(std::size_t i) const {
+        const S &get(std::size_t i) const {
             assert(0 <= i && i < n_);
 
             return get(root_, 0, n_, i);
@@ -51,7 +51,7 @@ namespace stcp {
         }
 
         // O(1)
-        S all_prod() const {
+        const S &all_prod() const {
             if (root_ != nullptr) {
                 return root_->prod;
             }
@@ -145,7 +145,7 @@ namespace stcp {
             range->update();
         }
 
-        static S get(const node *range, std::size_t l, std::size_t r, std::size_t i) {
+        static const S &get(const node *range, std::size_t l, std::size_t r, std::size_t i) {
             if (range == nullptr) {
                 return E();
             }

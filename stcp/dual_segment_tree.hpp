@@ -58,7 +58,7 @@ namespace stcp {
 
         // O(log size(dual_segment_tree))
         // 0 <= i < size(dual_segment_tree)
-        void get(std::size_t i) const {
+        const S &get(std::size_t i) const {
             assert(0 <= i && i < n_);
 
             i += size_;
