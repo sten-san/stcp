@@ -30,7 +30,7 @@ namespace stcp {
             lazy_ = std::vector<F>(size_, Id());
         }
 
-        // O(size(lazy_segment_tree))
+        // O(size(v))
         explicit lazy_segment_tree(const std::vector<S> &v):
             n_(v.size()) {
             log_ = 0;
