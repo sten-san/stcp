@@ -70,7 +70,7 @@ namespace stcp {
 
         // O(log size(lazy_segment_tree))
         // 0 <= i < size(lazy_segment_tree)
-        const S &get(std::size_t i) const {
+        S get(std::size_t i) const {
             assert(0 <= i && i < n_);
 
             i += size_;
@@ -115,7 +115,7 @@ namespace stcp {
         }
 
         // O(1)
-        const S &all_prod() const {
+        S all_prod() const {
             return data_[1];
         }
 
