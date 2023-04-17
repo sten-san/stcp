@@ -97,6 +97,34 @@ namespace stcp {
         }
 
         // O(log size(segment_tree))
+        // 0 <= l && l <= r && r <= n_
+        template <typename F>
+        void acc(std::size_t l, std::size_t r, F &&f) const {
+            static_assert(std::is_invocable_v<F, S>);
+
+            assert(0 <= l && l <= r && r <= n_);
+
+            l += size_; r += size_;
+
+            std::size_t log_ = 0, pr = r;
+            while (l < pr) {
+                if (l & 1) {
+                    std::forward<F>(f)(data_[l++]);
+                }
+                l >>= 1; pr >>= 1; ++log_;
+            }
+
+            while (pr < size_) {
+                pr <<= 1;
+                if (pr != (r >> (log_ - 1))) {
+                    std::forward<F>(f)(data_[pr]);
+                    ++pr;
+                }
+                --log_;
+            }
+        }
+
+        // O(log size(segment_tree))
         // 0 <= l <= size(segment_tree)
         template <typename F>
         std::size_t max_right(std::size_t l, F &&f) const {
