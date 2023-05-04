@@ -1,5 +1,5 @@
-#ifndef DYNAMIC_SEGMENT_TREE_HPP
-#define DYNAMIC_SEGMENT_TREE_HPP
+#ifndef STCP_DYNAMIC_SEGMENT_TREE_HPP
+#define STCP_DYNAMIC_SEGMENT_TREE_HPP
 
 #include <type_traits>
 #include <utility>
@@ -12,12 +12,12 @@ namespace stcp {
         using value_type = S;
 
         // O(1)
-        dynamic_segment_tree():
+        dynamic_segment_tree() noexcept:
             dynamic_segment_tree(0) {
         }
 
         // O(1)
-        dynamic_segment_tree(std::size_t n):
+        dynamic_segment_tree(std::size_t n) noexcept:
             n_(n), root_(nullptr) {
         }
 
@@ -40,6 +40,11 @@ namespace stcp {
             assert(0 <= i && i < n_);
 
             return get(root_, 0, n_, i);
+        }
+
+        // O(1)
+        std::size_t size() const noexcept {
+            return n_;
         }
 
         // O(log size(dynamic_segment_tree))
@@ -145,7 +150,7 @@ namespace stcp {
             range->update();
         }
 
-        static S get(const node *range, std::size_t l, std::size_t r, std::size_t i) {
+        static S get(const node *range, std::size_t l, std::size_t r, std::size_t i) noexcept {
             if (range == nullptr) {
                 return E();
             }
@@ -257,5 +262,5 @@ namespace stcp {
     };
 }
 
-#endif // DYNAMIC_SEGMENT_TREE_HPP
+#endif // STCP_DYNAMIC_SEGMENT_TREE_HPP
 
