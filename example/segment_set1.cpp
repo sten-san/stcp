@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     int64_t d; cin >> d;
 
-    stcp::segment_set<int64_t> seg;
+    stcp::segment_set<int64_t> set;
 
     int64_t ans = 0;
 
@@ -17,13 +17,18 @@ int main() {
     while (q--) {
         int64_t a, b; cin >> a >> b; ++b;
 
-        seg.insert(a, b, true);
-        ans = max(
+        set.insert(a, b);
+        set.connect(a);
+        set.connect(b);
+
+        ans = max<int64_t>(
             ans,
-            seg.covered_size(a)
+            set.wrapped_size(a)
         );
 
-        cout << ans << endl;
+        cout << ans << '\n';
     }
+
+    cout << flush;
 }
 
