@@ -80,7 +80,7 @@ namespace stcp {
             assert(l <= r && r <= max_range);
 
             if (size(l, r) <= n) {
-                throw std::out_of_range("binary_trie");
+                throw std::out_of_range("binary_trie_array");
             }
 
             std::size_t path = 0;

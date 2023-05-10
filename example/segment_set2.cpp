@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     int n, q; cin >> n >> q;
 
-    segment_set<int64_t> set;
+    stcp::segment_set<int64_t> set;
 
     while (q--) {
         int t; cin >> t;
